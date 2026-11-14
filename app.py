@@ -111,3 +111,32 @@ try:
 except Exception as e:
     st.error(f"Terjadi kesalahan: {e}")
     st.info("Pastikan file Excel Anda berada di folder yang sama dengan file `app.py` di VS Code.")
+    # --- BAGIAN ANALISIS & DESKRIPSI KEPUTUSAN ---
+st.subheader("💡 Deskripsi & Rekomendasi Keputusan")
+
+# Contoh logika otomatis berdasarkan hasil perhitungan portofolio (misalnya standar deviasi/risiko)
+if portfolio_std < 0.15:
+    kategori_risiko = "Rendah (Konservatif)"
+    rekomendasi_teks = (
+        "Portofolio ini memiliki tingkat fluktuasi yang relatif stabil. "
+        "Cocok untuk investor yang menghindari risiko tinggi, meskipun potensi "
+        "keuntungan (*return*) mungkin lebih moderat."
+    )
+elif portfolio_std <= 0.25:
+    kategori_risiko = "Sedang (Moderat)"
+    rekomendasi_teks = (
+        "Portofolio berada pada tingkat risiko menengah dengan keseimbangan "
+        "antara pertumbuhan modal dan kestabilan. Layak dipertimbangkan untuk "
+        "jangka menengah."
+    )
+else:
+    kategori_risiko = "Tinggi (Agresif)"
+    rekomendasi_teks = (
+        "Portofolio memiliki potensi keuntungan yang tinggi namun disertai "
+        "dengan tingkat risiko fluktuasi harga yang sangat besar. "
+        "Disarankan untuk investor berpengalaman."
+    )
+
+# Menampilkan hasil keputusan ke dalam kotak informasi di web Streamlit
+st.info(f"**Kategori Risiko Portofolio:** {kategori_risiko}")
+st.write(rekomendasi_teks)
