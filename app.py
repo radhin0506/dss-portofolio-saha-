@@ -117,7 +117,7 @@ st.subheader("💡 Analisis & Deskripsi Keputusan Portofolio")
 # Logika untuk memberikan deskripsi yang beragam berdasarkan hasil perhitungan
 # (Sesuaikan variabel 'portfolio_std' dengan nama variabel risiko/standar deviasi di kode Anda)
 
-if portfolio_std < 0.15:
+if portfolio_std < 0.01:
     kategori_risiko = "Rendah (Konservatif) 🛡️"
     deskripsi_keputusan = (
         "**Rekomendasi Keputusan:** Layak Dipertimbangkan untuk Jangka Panjang.\n\n"
@@ -126,7 +126,7 @@ if portfolio_std < 0.15:
         "Sangat cocok bagi investor atau pengambil keputusan yang mengutamakan keamanan modal, "
         "meskipun tingkat keuntungan (*return*) yang dihasilkan cenderung moderat."
     )
-elif portfolio_std <= 0.25:
+elif portfolio_std <= 0.05:
     kategori_risiko = "Sedang (Moderat) ⚖️"
     deskripsi_keputusan = (
         "**Rekomendasi Keputusan:** Seimbang & Layak Dieksekusi.\n\n"
