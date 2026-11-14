@@ -111,32 +111,40 @@ try:
 except Exception as e:
     st.error(f"Terjadi kesalahan: {e}")
     st.info("Pastikan file Excel Anda berada di folder yang sama dengan file `app.py` di VS Code.")
-    # --- BAGIAN ANALISIS & DESKRIPSI KEPUTUSAN ---
-st.subheader("💡 Deskripsi & Rekomendasi Keputusan")
+    # --- BAGIAN DESKRIPSI & KEPUTUSAN OTOMATIS ---
+st.subheader("💡 Analisis & Deskripsi Keputusan Portofolio")
 
-# Contoh logika otomatis berdasarkan hasil perhitungan portofolio (misalnya standar deviasi/risiko)
+# Logika untuk memberikan deskripsi yang beragam berdasarkan hasil perhitungan
+# (Sesuaikan variabel 'portfolio_std' dengan nama variabel risiko/standar deviasi di kode Anda)
+
 if portfolio_std < 0.15:
-    kategori_risiko = "Rendah (Konservatif)"
-    rekomendasi_teks = (
-        "Portofolio ini memiliki tingkat fluktuasi yang relatif stabil. "
-        "Cocok untuk investor yang menghindari risiko tinggi, meskipun potensi "
-        "keuntungan (*return*) mungkin lebih moderat."
+    kategori_risiko = "Rendah (Konservatif) 🛡️"
+    deskripsi_keputusan = (
+        "**Rekomendasi Keputusan:** Layak Dipertimbangkan untuk Jangka Panjang.\n\n"
+        "**Analisis:** Portofolio ini menunjukkan tingkat fluktuasi harga yang relatif stabil dan aman "
+        "dari gejolak pasar ekstrem. Mayoritas aset didominasi oleh saham defensif (seperti TLKM). "
+        "Sangat cocok bagi investor atau pengambil keputusan yang mengutamakan keamanan modal, "
+        "meskipun tingkat keuntungan (*return*) yang dihasilkan cenderung moderat."
     )
 elif portfolio_std <= 0.25:
-    kategori_risiko = "Sedang (Moderat)"
-    rekomendasi_teks = (
-        "Portofolio berada pada tingkat risiko menengah dengan keseimbangan "
-        "antara pertumbuhan modal dan kestabilan. Layak dipertimbangkan untuk "
-        "jangka menengah."
+    kategori_risiko = "Sedang (Moderat) ⚖️"
+    deskripsi_keputusan = (
+        "**Rekomendasi Keputusan:** Seimbang & Layak Dieksekusi.\n\n"
+        "**Analisis:** Portofolio berada pada titik keseimbangan yang baik antara tingkat pertumbuhan modal "
+        "dan risiko fluktuasi. Kombinasi bobot aset yang dipilih mampu meredam risiko kerugian besar "
+        "sekaligus memberikan peluang keuntungan yang kompetitif. "
+        "Keputusan ini sangat ideal untuk profil investor dengan horizon waktu menengah."
     )
 else:
-    kategori_risiko = "Tinggi (Agresif)"
-    rekomendasi_teks = (
-        "Portofolio memiliki potensi keuntungan yang tinggi namun disertai "
-        "dengan tingkat risiko fluktuasi harga yang sangat besar. "
-        "Disarankan untuk investor berpengalaman."
+    kategori_risiko = "Tinggi (Agresif) 🚀"
+    deskripsi_keputusan = (
+        "**Rekomendasi Keputusan:** Perlu Pengawasan Ketat / Opsional.\n\n"
+        "**Analisis:** Portofolio memiliki potensi keuntungan yang sangat tinggi, namun "
+        "diiringi oleh tingkat risiko fluktuasi harga (*volatilitas*) yang sangat besar. "
+        "Keputusan investasi dengan profil ini hanya disarankan bagi investor yang siap "
+        "menghadapi risiko penurunan nilai portofolio dalam jangka pendek demi memburu *return* maksimal."
     )
 
-# Menampilkan hasil keputusan ke dalam kotak informasi di web Streamlit
-st.info(f"**Kategori Risiko Portofolio:** {kategori_risiko}")
-st.write(rekomendasi_teks)
+# Menampilkan hasil ke web Streamlit
+st.info(f"**Profil Portofolio:** {kategori_risiko}")
+st.markdown(deskripsi_keputusan)
